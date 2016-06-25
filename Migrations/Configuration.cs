@@ -9,7 +9,7 @@ namespace EntityFramework123.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             ContextKey = "EntityFramework123.HospetalContext";
         }
 

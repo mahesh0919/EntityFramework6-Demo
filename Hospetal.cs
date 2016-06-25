@@ -21,6 +21,9 @@ namespace EntityFramework123
         [ConcurrencyCheck]
         public string EmailAddress{ get; set; }
 
+        public string Gender { get; set; }
+        public int Age { get; set; }
+
         public virtual ICollection<Appointment> Appointments { get; set; }
     }
 
@@ -36,6 +39,8 @@ namespace EntityFramework123
         [ConcurrencyCheck]
         public string Address { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
+
+        public int Age { get; set; }
 
         public string Gender { get; set; }
     }
@@ -68,6 +73,7 @@ namespace EntityFramework123
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<EntityFramework123.HospetalContext,
                     EntityFramework123.Migrations.Configuration>("HospetalDB"));
+
 
             Database.SetInitializer<HospetalContext>(new HospetalDBInitializer<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new DropCreateDatabaseAlways<HospetalContext>());

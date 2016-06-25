@@ -66,6 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hospetal.cs" />
+    <Compile Include="Migrations\201606251140276_UpgradeDB.cs" />
+    <Compile Include="Migrations\201606251140276_UpgradeDB.Designer.cs">
+      <DependentUpon>201606251140276_UpgradeDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606251143586_UpgradeDB2.cs" />
+    <Compile Include="Migrations\201606251143586_UpgradeDB2.Designer.cs">
+      <DependentUpon>201606251143586_UpgradeDB2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,7 +101,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606251140276_UpgradeDB.resx">
+      <DependentUpon>201606251140276_UpgradeDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606251143586_UpgradeDB2.resx">
+      <DependentUpon>201606251143586_UpgradeDB2.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
