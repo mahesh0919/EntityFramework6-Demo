@@ -60,8 +60,11 @@ namespace EntityFramework
         public HospetalContext()
             : base("name=HospetalDB")   // if connection string HospetalDB not found in app.config,it will throw exception
         {
+            //Turn off database initialization,for the production environment, 
+            // you don't want to lose existing data, then you can turn off the initializer
+            Database.SetInitializer<HospetalContext>(null);
 
-            Database.SetInitializer<HospetalContext>(new HospetalDBInitializer<HospetalContext>());
+            //Database.SetInitializer<HospetalContext>(new HospetalDBInitializer<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new DropCreateDatabaseAlways<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new CreateDatabaseIfNotExists<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new HospetalContext());

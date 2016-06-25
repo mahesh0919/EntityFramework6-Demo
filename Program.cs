@@ -23,10 +23,20 @@ namespace EntityFramework
                                orderby d.DoctorFirstName
                                select d).ToList();
 
-                Console.WriteLine("-------List of doctors------");
+                Console.WriteLine("-------List of doctors in hospetal------");
                 foreach (Doctor d in doctors)
                 {
                     Console.WriteLine("Doctor FirstName: " + d.DoctorFirstName);
+                }
+
+                var patients = (from p in hContext.Patients
+                                orderby p.PatientFirstName
+                                select p).ToList();
+                
+                Console.WriteLine("\nList of Patients in hospetal");
+                foreach (Patient p in hContext.Patients)
+                {
+                    Console.WriteLine("Patients Name: " + p.PatientFirstName);
                 }
 
                 Console.WriteLine("Press any Key");
