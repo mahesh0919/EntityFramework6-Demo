@@ -1,0 +1,24 @@
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.exe.config
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.exe
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.pdb
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.dll
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.xml
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+D:\Angular JS\EntityFramework\EntityFramework\obj\Debug\CodeFirstApproach.csprojResolveAssemblyReference.cache
+D:\Angular JS\EntityFramework\EntityFramework\obj\Debug\EntityFramework.exe
+D:\Angular JS\EntityFramework\EntityFramework\obj\Debug\EntityFramework.pdb
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\App_Data\HospetalDB.mdf
+D:\Angular JS\EntityFramework\EntityFramework\bin\Debug\App_Data\HospetalDB_log.ldf
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.exe.config
+D:\Angular_JS\EntityFramework\EntityFramework\obj\Debug\EntityFramework.exe
+D:\Angular_JS\EntityFramework\EntityFramework\obj\Debug\EntityFramework.pdb
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.exe
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.pdb
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.dll
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.xml
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+D:\Angular_JS\EntityFramework\EntityFramework\obj\Debug\CodeFirstApproach.csprojResolveAssemblyReference.cache
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\App_Data\HospetalDB.mdf
+D:\Angular_JS\EntityFramework\EntityFramework\bin\Debug\App_Data\HospetalDB_log.ldf
