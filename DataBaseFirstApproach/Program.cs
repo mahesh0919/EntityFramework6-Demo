@@ -12,7 +12,8 @@ namespace DtabaseFirstApproach
         {
             //AddRecords();
             //FetchRecords();
-            CRUDOperation();
+            //CRUDOperation();
+            Transaction();
 
             Console.WriteLine("Press Any Key");
             Console.Read();
@@ -135,5 +136,88 @@ namespace DtabaseFirstApproach
          }
 
         }
+
+        public static void Transaction()
+        {
+            //using (var db = new HospetalDBFirstEntities())
+            //{
+            //    Patient p1 = new Patient()
+            //    {
+            //        Address = "Hyderabad",
+            //        Age = 15,
+            //        FirstName = "Masood",
+            //        Gender = "M",
+            //        PatientLastName = "Ali"
+            //    };
+            //    db.Patients.Add(p1);
+
+            //    Patient p2 = new Patient()
+            //    {
+            //        Address = "Warangal",
+            //        Age = 15,
+            //        FirstName = "Shanmukh",
+            //        Gender = "M",
+            //        PatientLastName = "Sai"
+            //    };
+            //    db.Patients.Add(p2);
+            //    db.SaveChanges();        // In a single transaction add above 2 records
+            //}
+
+            // use transaction object
+            using(var db = new HospetalDBFirstEntities())
+            {
+                using (var dbContextTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Patient p1 = new Patient()
+                        {
+                            Address = "Hyderabad",
+                            Age = 15,
+                            FirstName = "Masood",
+                            Gender = "M",
+                            PatientLastName = "Ali"
+                        };
+                        db.Patients.Add(p1);
+                        db.SaveChanges();
+
+                        Patient p2 = new Patient()
+                        {
+                            Address = "Warangal",
+                            Age = 15,
+                            FirstName = "Shanmukh",
+                            Gender = "M",
+                            PatientLastName = "Sai"
+                        };
+                        db.Patients.Add(p2);
+                        db.SaveChanges();
+
+                        dbContextTransaction.Commit();
+                    }
+                    catch(Exception ex)
+                    {
+                        dbContextTransaction.Rollback();
+                    }
+                }
+            }
+
+            // Now Fetch records
+            using (var db = new HospetalDBFirstEntities())
+            {
+                var query = from p in db.Patients
+                            select p;
+
+                Console.WriteLine("Fetching all Patints");
+
+                foreach (Patient p in db.Patients)
+                {
+                    Console.WriteLine("Doctor Name: " + p.FirstName);
+                }
+            }
+
+
+        }
+    
+    
     }
 }
