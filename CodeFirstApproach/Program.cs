@@ -10,11 +10,11 @@ namespace EntityFramework123
     {
         static void Main(string[] args)
         {
-            AddRecords();
+            DisplayRecords();
             
         }
 
-        public static void AddRecords()
+        public static void DisplayRecords()
         {
             using (HospetalContext hContext = new HospetalContext())
             {
