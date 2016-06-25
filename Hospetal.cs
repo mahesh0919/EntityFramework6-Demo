@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace EntityFramework
 {
@@ -12,8 +13,12 @@ namespace EntityFramework
         public Doctor() { }
 
         public int DoctorID { get; set; }
+
+        [MaxLength(20)]
         public string DoctorFirstName { get; set; }
+        [StringLength(20)]
         public string DoctorLastName{ get; set; }
+        [ConcurrencyCheck]
         public string EmailAddress{ get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; }
@@ -23,9 +28,12 @@ namespace EntityFramework
     {
         public Patient() { }
 
-        public int PatientID { get; set; }
+        [Key]
+        public int PID { get; set; }
+        [MaxLength(20)]
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
+        [ConcurrencyCheck]
         public string Address { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
     }
@@ -40,7 +48,7 @@ namespace EntityFramework
         public int DoctorID { get; set; }
 
         //Foreign key for Patient
-        public int PatientID { get; set; }
+        public int PID { get; set; }
         public DateTime? AppointmentTime { get; set; }
 
         public virtual Patient Patient { get; set; }
@@ -50,9 +58,13 @@ namespace EntityFramework
     public class HospetalContext: DbContext
     {
         public HospetalContext()
-            : base("HospetalDB")   // if connection string HospetalDB not found in app.config,it will throw exception
-        { 
-        
+            : base("name=HospetalDB")   // if connection string HospetalDB not found in app.config,it will throw exception
+        {
+
+            Database.SetInitializer<HospetalContext>(new DropCreateDatabaseIfModelChanges<HospetalContext>());
+            //Database.SetInitializer<HospetalContext>(new DropCreateDatabaseAlways<HospetalContext>());
+            //Database.SetInitializer<HospetalContext>(new CreateDatabaseIfNotExists<HospetalContext>());
+            //Database.SetInitializer<HospetalContext>(new HospetalContext());
         }
 
         public virtual DbSet<Doctor> Doctors { get; set; }
