@@ -18,48 +18,6 @@ namespace EntityFramework
         {
             using (HospetalContext hContext = new HospetalContext())
             {
-                //Adding new Doctor  ---------------------------------------------
-                Doctor doctor1 = new Doctor()
-                {
-                    DoctorFirstName = "Mahesh",
-                    DoctorLastName = "Pendker",
-                    EmailAddress = "mahesh0919@gmail.com"
-                };
-
-                Doctor doctor2 = new Doctor()
-                {
-                    DoctorFirstName = "Rakesh",
-                    DoctorLastName = "Pendker",
-                    EmailAddress = "rakesh.p@gmail.com"
-                };
-
-                hContext.Doctors.Add(doctor1);
-                hContext.Doctors.Add(doctor2);
-
-                //Adding Patents ---------------------------------------------
-                Patient patient1 = new Patient()
-                { 
-                    Address ="Hyderabad",
-                    PatientFirstName = "Vikram",
-                    PatientLastName = "Voma"
-                };
-
-                Patient patient2 = new Patient()
-                {
-                    Address = "Hyderabad",
-                    PatientFirstName = "Vikram",
-                    PatientLastName = "Voma"
-                };
-
-                hContext.Patients.Add(patient1);
-                hContext.Patients.Add(patient2);
-
-                Appointment appointment1 = new Appointment() { AppointmentTime= DateTime.Now.Date, Doctor = doctor1, Patient = patient1  };
-
-                hContext.Appointments.Add(appointment1);
-
-                hContext.SaveChanges();
-
                 //Display Doctors List
                 var doctors = (from d in hContext.Doctors
                                orderby d.DoctorFirstName

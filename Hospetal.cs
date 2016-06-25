@@ -61,7 +61,7 @@ namespace EntityFramework
             : base("name=HospetalDB")   // if connection string HospetalDB not found in app.config,it will throw exception
         {
 
-            Database.SetInitializer<HospetalContext>(new DropCreateDatabaseIfModelChanges<HospetalContext>());
+            Database.SetInitializer<HospetalContext>(new HospetalDBInitializer<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new DropCreateDatabaseAlways<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new CreateDatabaseIfNotExists<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new HospetalContext());
@@ -70,7 +70,56 @@ namespace EntityFramework
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
+    }
 
+    public class HospetalDBInitializer<T> : DropCreateDatabaseAlways<HospetalContext>
+    {
+        protected override void Seed(HospetalContext context)
+        {
+            //Adding new Doctor  ---------------------------------------------
+            Doctor doctor1 = new Doctor()
+            {
+                DoctorFirstName = "Mahesh",
+                DoctorLastName = "Pendker",
+                EmailAddress = "mahesh0919@gmail.com"
+            };
+
+            Doctor doctor2 = new Doctor()
+            {
+                DoctorFirstName = "Rakesh",
+                DoctorLastName = "Pendker",
+                EmailAddress = "rakesh.p@gmail.com"
+            };
+
+            //Adding Patents ---------------------------------------------
+            Patient patient1 = new Patient()
+            {
+                Address = "Hyderabad",
+                PatientFirstName = "Vikram",
+                PatientLastName = "Voma"
+            };
+
+            Patient patient2 = new Patient()
+            {
+                Address = "Hyderabad",
+                PatientFirstName = "Vikram",
+                PatientLastName = "Voma"
+            };
+
+            context.Patients.Add(patient1);
+            context.Patients.Add(patient2);
+
+            //Adding Appointments ------------------------------------------
+            Appointment appointment1 = new Appointment() { AppointmentTime= DateTime.Now.Date, Doctor = doctor1, Patient = patient1  };
+            Appointment appointment2 = new Appointment() { AppointmentTime = DateTime.Now.Date, Doctor = doctor2, Patient = patient2 };
+            context.Appointments.Add(appointment1);
+            context.Appointments.Add(appointment2);
+
+            context.Doctors.Add(doctor1);
+            context.Doctors.Add(doctor2);
+
+            base.Seed(context);
+        }
     }
 
 }
