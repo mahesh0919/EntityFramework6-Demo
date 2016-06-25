@@ -10,8 +10,9 @@ namespace DtabaseFirstApproach
     {
         static void Main(string[] args)
         {
-            AddRecords();
-            FetchRecords();
+            //AddRecords();
+            //FetchRecords();
+            CRUDOperation();
 
             Console.WriteLine("Press Any Key");
             Console.Read();
@@ -68,7 +69,7 @@ namespace DtabaseFirstApproach
 
         }
 
-         public static void FetchRecords()
+        public static void FetchRecords()
          {
              using (var db = new HospetalDBFirstEntities())
              {
@@ -83,5 +84,56 @@ namespace DtabaseFirstApproach
                  }
              }
          }
+
+        public static void CRUDOperation()
+        { 
+           // Add records
+         using(var db = new HospetalDBFirstEntities())
+         {
+             Doctor d1 = new Doctor() { DoctorFirstName ="David", Age= 40, DoctorLastName="Young", EmailAddress="test@gmail.com", Gender = "M" };
+             Doctor d2 = new Doctor() { DoctorFirstName = "DavidTest", Age = 40, DoctorLastName = "Young", EmailAddress = "test@gmail.com", Gender = "M" };
+
+             db.Doctors.Add(d1);
+             db.Doctors.Add(d2);
+             db.SaveChanges();
+         }
+
+        //Update Record
+         using (var db = new HospetalDBFirstEntities())
+         {
+             var doctors = (from d in db.Doctors
+                            where d.DoctorFirstName == "David"
+                            select d);
+
+             foreach (Doctor d in doctors)
+             {
+                 d.DoctorFirstName = "David Update";
+             }
+             db.SaveChanges();
+         }
+
+        //Delete Record
+         using (var db = new HospetalDBFirstEntities())
+         {
+             var doctors = (from d in db.Doctors
+                                    where d.DoctorFirstName == "DavidTest"
+                                    select d);
+             foreach (Doctor d in doctors)
+             {
+                 db.Doctors.Remove(d);
+             }
+             db.SaveChanges();
+         }
+
+        //Select Records
+         using (var db = new HospetalDBFirstEntities())
+         {
+             foreach (Doctor d in db.Doctors)
+             {
+                 Console.WriteLine("Doctor Name: "+ d.DoctorFirstName);
+             }
+         }
+
+        }
     }
 }
