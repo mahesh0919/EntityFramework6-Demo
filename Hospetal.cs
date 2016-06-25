@@ -67,6 +67,17 @@ namespace EntityFramework
             //Database.SetInitializer<HospetalContext>(new HospetalContext());
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //Configure domain classes using Fluent API here
+
+            //Rename PatientFirstName column to FirstName
+            modelBuilder.Entity<Patient>().Property(p=>p.PatientFirstName)
+             .HasColumnName("FirstName");
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
