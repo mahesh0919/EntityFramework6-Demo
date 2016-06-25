@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 
-namespace EntityFramework
+namespace EntityFramework123
 {
     public class Doctor
     {
@@ -36,6 +36,8 @@ namespace EntityFramework
         [ConcurrencyCheck]
         public string Address { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
+
+        public string Gender { get; set; }
     }
 
     public class Appointment
@@ -62,9 +64,12 @@ namespace EntityFramework
         {
             //Turn off database initialization,for the production environment, 
             // you don't want to lose existing data, then you can turn off the initializer
-            Database.SetInitializer<HospetalContext>(null);
+            //Database.SetInitializer<HospetalContext>(null);
 
-            //Database.SetInitializer<HospetalContext>(new HospetalDBInitializer<HospetalContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EntityFramework123.HospetalContext,
+                    EntityFramework123.Migrations.Configuration>("HospetalDB"));
+
+            Database.SetInitializer<HospetalContext>(new HospetalDBInitializer<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new DropCreateDatabaseAlways<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new CreateDatabaseIfNotExists<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new HospetalContext());
