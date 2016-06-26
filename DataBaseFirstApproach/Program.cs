@@ -10,8 +10,10 @@ namespace DtabaseFirstApproach
     {
         static void Main(string[] args)
         {
-            TrackChanges();
 
+            DBCommandLogging();
+
+            //TrackChanges();
             //ValidatePatientRecord();
             //GetRecords();
             //AddRecords();
@@ -22,6 +24,27 @@ namespace DtabaseFirstApproach
             Console.WriteLine("Press Any Key");
             Console.Read();
 
+        }
+
+        public static void DBCommandLogging()
+        {
+            using (var db = new HospetalDBFirstEntities())
+            {
+                db.Database.Log = Logger;
+                var patients = (from p in db.Patients
+                               where p.FirstName == "mahesh"
+                               select p);
+                foreach (Patient p in patients)
+                {
+                    // commang logging will be fired on accessing an entity 
+                }
+
+            }
+        }
+
+        public static void Logger(string dbcommand)
+        {
+            Console.WriteLine(dbcommand);
         }
 
         public static void TrackChanges()
