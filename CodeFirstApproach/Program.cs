@@ -18,6 +18,7 @@ namespace EntityFramework123
         {
             using (HospetalContext hContext = new HospetalContext())
             {
+
                 //Display Doctors List
                 var doctors = (from d in hContext.Doctors
                                orderby d.DoctorFirstName

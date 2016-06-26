@@ -10,7 +10,7 @@ namespace EntityFramework123.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "EntityFramework123.HospetalContext";
+            //ContextKey = "EntityFramework123.HospetalContext";
         }
 
         protected override void Seed(EntityFramework123.HospetalContext context)

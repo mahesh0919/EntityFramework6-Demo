@@ -11,9 +11,9 @@ namespace DtabaseFirstApproach
         static void Main(string[] args)
         {
             //AddRecords();
-            //FetchRecords();
+            FetchRecords();
             //CRUDOperation();
-            Transaction();
+            //Transaction();
 
             Console.WriteLine("Press Any Key");
             Console.Read();
@@ -72,18 +72,8 @@ namespace DtabaseFirstApproach
 
         public static void FetchRecords()
          {
-             using (var db = new HospetalDBFirstEntities())
-             {
-                 var query = from d in db.Doctors
-                             select d;
-
-                 Console.WriteLine("Fetching all Doctors");
-
-                 foreach (Doctor d in db.Doctors)
-                 {
-                     Console.WriteLine("Doctor Name: " + d.DoctorFirstName);
-                 }
-             }
+             GetPatientsList();
+             GetDoctorsList();
          }
 
         public static void CRUDOperation()
@@ -201,6 +191,11 @@ namespace DtabaseFirstApproach
                 }
             }
 
+            GetPatientsList();
+        }
+
+        public static void GetPatientsList()
+        {
             // Now Fetch records
             using (var db = new HospetalDBFirstEntities())
             {
@@ -214,8 +209,22 @@ namespace DtabaseFirstApproach
                     Console.WriteLine("Doctor Name: " + p.FirstName);
                 }
             }
+        }
 
+        public static void GetDoctorsList()
+        {
+            using (var db = new HospetalDBFirstEntities())
+            {
+                var query = from d in db.Doctors
+                            select d;
 
+                Console.WriteLine("\n\nFetching all Doctors");
+
+                foreach (Doctor d in db.Doctors)
+                {
+                    Console.WriteLine("Doctor Name: " + d.DoctorFirstName);
+                }
+            }
         }
     
     

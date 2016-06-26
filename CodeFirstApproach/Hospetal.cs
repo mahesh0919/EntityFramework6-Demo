@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityFramework123
 {
@@ -15,6 +16,7 @@ namespace EntityFramework123
         public int DoctorID { get; set; }
 
         [MaxLength(20)]
+       // [Index]
         public string DoctorFirstName { get; set; }
         [StringLength(20)]
         public string DoctorLastName{ get; set; }
@@ -34,6 +36,8 @@ namespace EntityFramework123
         [Key]
         public int PID { get; set; }
         [MaxLength(20)]
+         
+       // [Index]
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         [ConcurrencyCheck]
@@ -65,15 +69,14 @@ namespace EntityFramework123
     public class HospetalContext: DbContext
     {
         public HospetalContext()
-            : base("name=HospetalDB")   // if connection string HospetalDB not found in app.config,it will throw exception
+            : base("HospetalDB")   // if connection string HospetalDB not found in app.config,it will throw exception
         {
             //Turn off database initialization,for the production environment, 
             // you don't want to lose existing data, then you can turn off the initializer
             //Database.SetInitializer<HospetalContext>(null);
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EntityFramework123.HospetalContext,
-                    EntityFramework123.Migrations.Configuration>("HospetalDB"));
-
+           // Database.SetInitializer(new MigrateDatabaseToLatestVersion<EntityFramework123.HospetalContext,
+           //         EntityFramework123.Migrations.Configuration>("HospetalDB"));
 
             Database.SetInitializer<HospetalContext>(new HospetalDBInitializer<HospetalContext>());
             //Database.SetInitializer<HospetalContext>(new DropCreateDatabaseAlways<HospetalContext>());
@@ -96,6 +99,7 @@ namespace EntityFramework123
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
     }
+
 
     public class HospetalDBInitializer<T> : DropCreateDatabaseAlways<HospetalContext>
     {

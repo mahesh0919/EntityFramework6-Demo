@@ -20,6 +20,7 @@ namespace DtabaseFirstApproach
         public Nullable<System.DateTime> AppointmentTime { get; set; }
     
         public virtual Doctor Doctor { get; set; }
-        public virtual Patient Patient { get; set; }
+        //Turn off lazy loading for patient
+        public Patient Patient { get; set; }
     }
 }
