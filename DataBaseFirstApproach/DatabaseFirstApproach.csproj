@@ -73,6 +73,7 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>HospetalDBFirst.tt</DependentUpon>
     </Compile>
+    <Compile Include="EFCommandInterceptor.cs" />
     <Compile Include="HospetalDBFirst.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

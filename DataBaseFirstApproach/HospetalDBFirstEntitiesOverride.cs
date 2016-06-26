@@ -13,6 +13,7 @@ namespace DtabaseFirstApproach
         public HospetalDBFirstEntitiesOverride()
         {
             this.Configuration.LazyLoadingEnabled = true;
+            
         }
 
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry,
