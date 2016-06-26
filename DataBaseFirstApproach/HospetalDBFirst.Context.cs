@@ -18,6 +18,7 @@ namespace DtabaseFirstApproach
         public HospetalDBFirstEntities()
             : base("name=HospetalDBFirstEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
