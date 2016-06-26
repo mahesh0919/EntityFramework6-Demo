@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +13,9 @@ namespace DtabaseFirstApproach
         static void Main(string[] args)
         {
 
-            DBCommandLogging();
+            EDMQuey();
 
+            //DBCommandLogging();
             //TrackChanges();
             //ValidatePatientRecord();
             //GetRecords();
@@ -23,6 +26,45 @@ namespace DtabaseFirstApproach
 
             Console.WriteLine("Press Any Key");
             Console.Read();
+        }
+
+        public static void EDMQuey()
+        { 
+            //Linq to Entities
+            using (var db = new HospetalDBFirstEntities())
+            {
+                var query = from p in db.Patients
+                            where p.FirstName == "Vikram"
+                            select p;
+
+                Console.WriteLine("Fetching all Patints from Linq to Entities");
+
+                foreach (Patient p in query)
+                {
+                    Console.WriteLine("Patient Name from Linq to Entities: " + p.FirstName);
+                }
+            }
+            //Linq to Entity SQL
+            using (var con = new EntityConnection("name=HospetalDBFirstEntities"))
+            {
+                con.Open();
+                EntityCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT Value p FROM HospetalDBFirstEntities.patients as p where p.FirstName = 'Vikram'";
+                using (EntityDataReader rdr = cmd.ExecuteReader(CommandBehavior.SequentialAccess | CommandBehavior.CloseConnection))
+                {
+                    while (rdr.Read())
+                    {
+                        Console.WriteLine("Patient Name: from Linq to Entity SQL: " + rdr["FirstName"]);
+                    }
+                }
+            }
+
+            ///Native SQL:
+            //using (var db = new HospetalDBFirstEntities())
+            //{
+            // var studentName = db.Patients.SqlQuery("Select firstname from patients where firstname='Vikram'").ToList();
+            //}
+
 
         }
 
