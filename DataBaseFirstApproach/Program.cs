@@ -10,8 +10,11 @@ namespace DtabaseFirstApproach
     {
         static void Main(string[] args)
         {
+
+
+            GetRecords();
             //AddRecords();
-            FetchRecords();
+            //FetchRecords();
             //CRUDOperation();
             //Transaction();
 
@@ -69,6 +72,24 @@ namespace DtabaseFirstApproach
             }
 
         }
+
+        public static void GetRecords()
+        {
+                 // Now Fetch records
+                using (var db = new HospetalDBFirstEntitiesOverride())
+                {
+                    var query = from p in db.Patients
+                                select p;
+
+                    Console.WriteLine("Fetching all Patints");
+
+                    foreach (Patient p in db.Patients)
+                    {
+                        Console.WriteLine("Doctor Name: " + p.FirstName);
+                    }
+                }
+        }
+
 
         public static void FetchRecords()
          {

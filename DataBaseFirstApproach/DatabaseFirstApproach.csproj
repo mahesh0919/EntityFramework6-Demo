@@ -88,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HospetalDBFirst.edmx</DependentUpon>
     </Compile>
+    <Compile Include="HospetalDBFirstEntitiesOverride.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>HospetalDBFirst.tt</DependentUpon>
     </Compile>
