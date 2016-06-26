@@ -10,8 +10,9 @@ namespace DtabaseFirstApproach
     {
         static void Main(string[] args)
         {
+            TrackChanges();
 
-            ValidatePatientRecord();
+            //ValidatePatientRecord();
             //GetRecords();
             //AddRecords();
             //FetchRecords();
@@ -23,6 +24,35 @@ namespace DtabaseFirstApproach
 
         }
 
+        public static void TrackChanges()
+        {
+            using (var db = new HospetalDBFirstEntitiesOverride())
+            {
+                db.Configuration.AutoDetectChangesEnabled = true;
+
+                Patient patient = new Patient()
+                {
+                    Address = "Hyderabad",
+                    FirstName = "123",
+                    PatientLastName = "Validation"
+                };
+                db.Patients.Add(patient);
+
+                //Update Record
+                //GetPatientsList();
+
+                Console.WriteLine("\nContext tracking changes of {0} entity.", db.ChangeTracker.Entries().Count());
+                var entries = db.ChangeTracker.Entries();
+                foreach (var entry in entries)
+                {
+                    Console.WriteLine("Entity Name: {0}", entry.Entity.GetType().Name);
+                    Console.WriteLine("Status: {0}", entry.State);
+                }
+
+                db.SaveChanges();
+
+            }
+        }
         public static void ValidatePatientRecord()
         {
             using (var db = new HospetalDBFirstEntitiesOverride())
