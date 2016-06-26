@@ -11,8 +11,8 @@ namespace DtabaseFirstApproach
         static void Main(string[] args)
         {
 
-
-            GetRecords();
+            ValidatePatientRecord();
+            //GetRecords();
             //AddRecords();
             //FetchRecords();
             //CRUDOperation();
@@ -22,6 +22,25 @@ namespace DtabaseFirstApproach
             Console.Read();
 
         }
+
+        public static void ValidatePatientRecord()
+        {
+            using (var db = new HospetalDBFirstEntitiesOverride())
+            {
+                Patient patient = new Patient()
+                {
+                    Address = "Hyderabad",
+                    //FirstName = "Test",
+                    PatientLastName = "Validation"
+                };
+                db.Patients.Add(patient);
+                db.SaveChanges();
+            }
+
+            GetPatientsList();
+
+        }
+
         public static void AddRecords()
         {
             using (var db = new HospetalDBFirstEntities())
